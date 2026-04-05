@@ -2,49 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book Recommender System</title>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusReads - AI Recommender</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<style>
-    .text-white{
-        color:white
-    }
-</style>
-<body style="background-color:black">
+<body>
+    <div class="blob shape1"></div>
+    <div class="blob shape2"></div>
 
-    <nav class="navbar" style="background-color:#00a65a">
-        <a class="navbar-brand">My Book recommender</a>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+    <nav class="navbar glass">
+        <div class="nav-brand">NexusReads <span>AI</span></div>
+        <ul class="nav-links">
+            <li><a href="/" class="active">Top 50 books</a></li>
             <li><a href="/recommend">Recommend</a></li>
-            <li><a>Contact</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-white" style="font-size:50px">Top 50 Books</h1>
-            </div>
+        <div class="header-section text-center">
+            <h1 class="gradient-text">Top 50 Trendsetters</h1>
+            <p>Discover the most acclaimed books curated just for you.</p>
+        </div>
 
+        <div class="book-grid">
             {% for i in range(book_name|length) %}
-                <div class="col-md-3" style="margin-top:50px">
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ image[i] }}">
-                            <p class="text-white">{{ book_name[i] }}</p>
-                            <h4 class="text-white">{{ author[i] }}</h4>
-                            <h4 class="text-white">Votes - {{ votes[i] }}</h4>
-                            <h4 class="text-white">Rating - {{ rating[i] }}</h4>
-                        </div>
+            <div class="book-card glass">
+                <div class="book-image-wrapper">
+                    {% if image[i] and image[i].startswith('http') %}
+                        <img class="book-cover" src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                    {% else %}
+                        <img class="book-cover" src="https://via.placeholder.com/300x450/0b0f19/a855f7?text=No+Cover" alt="{{ book_name[i] }}">
+                    {% endif %}
+                    <div class="rating-badge">★ {{ "%.1f"|format(rating[i]) }}</div>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">{{ book_name[i] }}</h3>
+                    <p class="book-author">{{ author[i] }}</p>
+                    <div class="book-meta">
+                        <span>{{ votes[i] }} Votes</span>
                     </div>
                 </div>
+            </div>
             {% endfor %}
-
-
         </div>
     </div>
-
 </body>
 </html>
