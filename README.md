@@ -31,6 +31,15 @@ The model was trained on the Arashnic Book Dataset and achieved the following sc
 - **Frontend**: HTML5, Vanilla CSS3 (Glassmorphism), Google Fonts (Outfit)
 - **Deployment**: Pickle (Model Serialization)
 
+## ✨ Key Improvements Over Original CampusX Version
+
+While based on the foundational concepts from CampusX, this repository features several significant architectural and visual enhancements:
+
+- **📊 Live Match Accuracy & Score**: Unlike the original, every recommendation here provides a real-time "Match Accuracy" percentage, helping users understand why a book was suggested.
+- **🧪 Automated Model Evaluation**: Integrated `evaluate.py` handles model performance tracking (MAE, RMSE), which achieved a solid **88.08% confidence score** on the Arashnic dataset.
+- **🎨 Premium Glassmorphism UI**: Completely redesigned the frontend with a modern, futuristic aesthetic using CSS Glassmorphism, floating blur blobs, and responsive layouts.
+- **⚙️ Enhanced Training Logic**: Robust `train.py` script that handles the end-to-end pipeline, includes performance reporting, and correctly manages large data assets via `.gitignore`.
+
 ## 📂 Project Structure
 
 ```text
